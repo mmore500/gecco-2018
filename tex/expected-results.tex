@@ -1,1 +1,12 @@
 \section{Expected Results}
+
+Two types of evolutionary trials will be assessed: control and experimental regimes.
+Under both the control and experimental regimes, solution genotypes will represented as a $n$-length bitstring.
+Under the control regime, the identity genotype-phenotype mapping will be employed.
+Under the experimental regime, the co-evolving solution-mapping algorithm described in Section \ref{sec:approach} will be employed.
+
+The ability of the algorithm to discover low cost solutions to the $n$ legs problem (i.e. overcoming the deceptive nature of the search space) will be assessed.
+The ability of the algorithm to yield an evolvable mapping will also be assessed by measuring the evolvability signature of mappings present at the end of evolutionary runs \cite{tarapore2015evolvability}.
+The performance of the algorithm on these two metrics will be calculated over a range of $n$ and $\alpha$ values.
+
+It is hoped that the proposed algorithm will discover better solutions to the $n$ leg problem and will yield more evolvable representations than the control scheme, particularly for large $n$.

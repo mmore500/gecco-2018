@@ -1,1 +1,38 @@
-\section{Problem}
+\section{Problem} \label{sec:problem}
+
+A simple problem will be used as proof of concept.
+This problem, the $n$-legged table problem, models a table design scenario where selection is made for the height of the table and it is highly disadvantageous to have different-length legs.
+In this case, short tables will be selected for over long tables.
+
+In the phenotype space, solutions are a $n$-length bitstring.
+The $i$th bit of the bitstring represents whether the the $i$th leg of the table is in the long or short configuration.
+
+In this problem, phenotypic novelty can be measured by the hamming distance between two phenotypes.
+
+The cost function will be defined as,
+\begin{align*}
+C(l_1, l_2, \ldots, l_n)
+&=
+\alpha \sum_{i = 1}^{n} l_i
++
+\sum_{i=1}^n \Big[l_i - \Big(\frac{1}{n} \sum_{j=1}^n l_j\Big)\Big]^2
+\end{align*}
+where $\alpha$ is a parameter that controls how strongly favored short tables are over tall tables.
+Fitness will be inversely proportional to cost.
+As selection will be performed by tournament, only relative --- not absolute fitness --- is of concern.
+
+Suppose $n=4$ and $\alpha = \frac{1}{10}$.
+Then, we can tabulate the cost for having different leg combinations
+\begin{center}
+\begin{tabular}{ c c c }
+ $C$ & short legs & long legs \\
+ 0.20 & 0 & 4 \\
+ 0.40 & 1 & 3 \\
+ 0.43 & 2 & 2 \\
+ 0.30 & 3 & 1 \\
+ 0.00 & 4 & 0
+\end{tabular}
+\end{center}
+Thus, we can see that the fitness landscape is deceptive.
+Although the global minimum cost occurs with four short legs, initially converting long legs to short legs results in an increased cost.
+A similar calculation shows that increasing alpha decreases the deceptiveness of the search space.
