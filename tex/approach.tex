@@ -1,9 +1,9 @@
-\section{Approach}
+\section{Approach} \label{sec:approach}
 
 The algorithm will consist of alternating periods of evolving in the solution space and evolving in the representation space.
 For both representations, tournament selection will be used and recombination will consist solely of mutation.
 
-As described in \ref{sec:problem}, the solution genotype and phenotype will consist of a bitstring.
+As described in Section \ref{sec:problem}, the solution genotype and phenotype will consist of a bitstring.
 The mapping genotype will enumerate a mapping between solution genotype and phenotype via a lookup table.
 All solution genotypes, all of which must be valid, will form the left-hand side of the lookup table.
 These entries will not be considered part of the mapping genotype and therefore will not be subject to recombination.
