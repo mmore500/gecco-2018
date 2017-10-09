@@ -1,6 +1,6 @@
-## Homework Template
+## CSE 841 Project Proposal
 
-A LaTeX template for homework assignments.
+Proposal for evolutionary computing term project.
 
 ### Authorship
 
