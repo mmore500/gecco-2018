@@ -1,6 +1,6 @@
-## CSE 841 Project Proposal
+## CSE 848 Project Writeup
 
-Proposal for evolutionary computing term project.
+Writeup for evolutionary computing term project.
 
 ### Authorship
 
