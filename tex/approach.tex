@@ -1,28 +1,26 @@
 \section{Approach} \label{sec:approach}
 
-The algorithm will consist of alternating periods of evolving in the solution space and evolving in the representation space.
-For both representations, tournament selection will be used and recombination will consist solely of mutation.
+The two proposed genotype-phenotype map learning techniques are based on artificial neural network autoencoders.
+These are networks that are trained to regurgitate as output the input that they were provided.
+Such networks are used to discover efficient lower-dimensional codings for datasets and, more recently, as method for generative modeling \cite{liou2014autoencoder, kingma2013auto}.
 
-As described in Section \ref{sec:problem}, the solution genotype and phenotype will consist of a bitstring.
-The mapping genotype will enumerate a mapping between solution genotype and phenotype via a lookup table.
-All solution genotypes, all of which must be valid, will form the left-hand side of the lookup table.
-These entries will not be considered part of the mapping genotype and therefore will not be subject to recombination.
-The right-hand side of the lookup table will serve as the genotype of the mapping.
-The genotype of the mapping will be represented as a bitstring.
-For a solution genotype of length $n$, the mapping genotype will be of length
-$2^n \times n$.
+\input{fig/bottleneck.tex}
 
-The phenotype of the mapping will be expressed by
-\begin{enumerate}
-\item converting the solution genotype bitstring into an integer value $i$,
-\item indexing into the $i$th set of $n$ bits in the mapping genotype, and
-\item taking that set of bits as the solution phenotype.
-\end{enumerate}
+The first technique uses a bottlenecked autoencoder.
+Figure \ref{fig:bottleneck} provides a schematic impression of such an autoencoder.
+This autoencoder has a small layer in the middle that information must pass through to reach the output.
+Thus, the autoencoder is forced to learn a compact representation for the input it is trained with that can pass through the bottleneck.
+The part of the autoencoder that precedes the bottleneck is called the encoder and the part that follows is called the decoder.
+This autoencoder will be trained to encode phenotypes taken from fitness peaks throughout an evolutionary search space.
+The idea of this approach is that, because the bottleneck provides a compact representation of those high-fitness phenotypes, using the decoder as a genotype-phenotype mapping will readily allow mutation to move the phenotype between otherwise distant fitness peaks.
 
-Fitness of a mapping will be calculated by generating a set of mutant offspring from the currently existing population of solution genotypes and calculating the
-\begin{enumerate}
-\item novelty of mutant offspring with respect to their parent, and
-\item fitness of mutant offspring with respect to their parent
-\end{enumerate}
-Specifically, mapping fitness will calculated as a weighted sum of these two criteria.
-Solution novelty metrics and fitness criteria are described in Section \ref{sec:problem}.
+\input{fig/denoiser.tex}
+
+The second technique uses a denoising autoencoder.
+Figure \ref{fig:denoiser} provides a schematic depiction of such an autoencoder.
+These autoencoders have not bottleneck.
+Instead, they are trained to reconstruct noisy input into its original unadulterated form.
+This autoencoder will be trained to reconstruct phenotypes taken from fitness peaks throughout an evolutionary search space.
+For this approach, the entire denoising autoencoder would be used as the genotype-phenotype mapping.
+The idea of this design is that mutations that would otherwise be deleterious will effectively be interpreted as noise and prevented from being expressed by the genotype-phenotype mapping.
+Effectively, this mapping should flatten out the valleys between local fitness peaks to allow evolution to more readily drift between those local fitness peaks.
