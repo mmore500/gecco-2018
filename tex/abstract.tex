@@ -1,5 +1,8 @@
 \section{Abstract} \label{sec:abstract}
 
-The goal of this project is to develop methodology to generate highly evolvable representations for evolutionary computing.
-Specifically, this project sets out to investigate the feasibility of co-evolving a representation and a solution, where the representation will be selected for based on evolvability metrics and the solution will be selected for fitness.
-The approach will be tested with the $n$ legs problem, a toy problem where the objective is to evolve a set of leg lengths for a table.
+Two schemes for automatic generation of evolvable genotype-phenotype mappings are presented.
+Both schemes use an artificial neural network (ANN) autoencoder trained on phenotypes harvested from fitness peaks as the basis for a genotype-phenotype mapping.
+In the first, the decoder segment of a bottlenecked autoencoder is used as the genotype-phenotype mapping.
+In the second, a denoising autoencoder is used as the genotype-phenotype mapping.
+Both schemes are demonstrated on the $n$-legged table problem, a toy problem that defines a simple rugged fitness landscape.
+These schemes are both found to enhance evolvability in the $n$-legged table domain relative to the direct encoding.
