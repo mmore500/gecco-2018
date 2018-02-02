@@ -47,7 +47,7 @@ acmguide.pdf: $(PACKAGE).dtx $(PACKAGE).cls
 	do pdflatex $<; done
 
 sample-sigconf.pdf \
-sample-sigconf-authordraft.pdf: samplebody-conf.tex
+sample-sigconf-authordraft.pdf: samplebody-conf.tex tex/* img/* fig/*
 
 
 .PRECIOUS:  $(PACKAGE).cfg $(PACKAGE).cls
