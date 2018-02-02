@@ -102,19 +102,22 @@ These autoencoders are trained to take noisy input and, from that noisy input, r
 
 \subsection{Learning an Evolvable Genotype-Phenotype Mapping}
 
-
-This autoencoder will be trained to encode phenotypes taken from fitness peaks throughout an evolutionary search space.
+The pair of proposed techniques to automatically learn evolvable genotype-phenotype mappings are based on autoencoders trained to encode phenotypes taken from local fitness peaks spread throughout an evolutionary search space.
+(These phenotypes are gathered by evolving a large number of replicate direct-encoded populations and retaining champion individuals from each population).
 
 \input{fig/bottleneck_map.tex}
-The idea of this approach is that, because the bottleneck provides a compact representation of those high-fitness phenotypes, using the decoder as a genotype-phenotype mapping will readily allow mutation to move the phenotype between otherwise distant fitness peaks.
 
+The first approach, the bottleneck map, exploits just the decoder portion of the bottleneck autoencoder.
+The decoder serves as the genotype-phenotype map so the genotype is now in the bottleneck vector space while the phenotype remains in the same vector space as before.
+The idea of this approach is that, because the bottleneck provides a compact representation of those high-fitness phenotypes, using the decoder as a genotype-phenotype mapping will readily allow mutation to move the phenotype between otherwise distant fitness peaks.
+This approach is illustrated in Figure \ref{fig:bottleneck_map}.
 
 \input{fig/denoiser_map.tex}
 
-This autoencoder will be trained to reconstruct phenotypes taken from fitness peaks throughout an evolutionary search space.
-For this approach, the entire denoising autoencoder would be used as the genotype-phenotype mapping.
-The idea of this design is that mutations that would otherwise be deleterious will effectively be interpreted as noise and prevented from being expressed by the genotype-phenotype mapping.
+The second approach, the denoiser map, employs the entire denoising autoencoder would be used as the genotype-phenotype mapping.
+Note that the genotype and phenotype remain in the same, equivalent vector spaces.
+The idea of this design is that mutations that would otherwise be deleterious will be interpreted as noise and prevented from being expressed by the genotype-phenotype mapping.
 Effectively, this mapping should flatten out the valleys between local fitness peaks to allow evolution to more readily drift between those local fitness peaks.
-
+This approach is illustrated in Figure \ref{fig:denoiser_map}.
 
 Ultimately, it is hoped that these techniques will prove themselves to be useful methods to achieve automatic design of highly evolvable genotype-phenotype mappings in digital evolution.
