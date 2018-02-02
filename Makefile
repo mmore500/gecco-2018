@@ -1,25 +1,76 @@
-# get the basename of the containing directory
-# this will be used to name othe output document
-BUILD_DIR := $(shell basename $(abspath $(dir $(lastword $(MAKEFILE_LIST)))))
+#
+# Makefile for acmart package
+#
+# This file is in public domain
+#
+# $Id: Makefile,v 1.10 2016/04/14 21:55:57 boris Exp $
+#
 
-all: ${BUILD_DIR}.pdf
+PACKAGE=acmart
 
-view:
-	atom ${BUILD_DIR}.pdf
+SAMPLES = \
+	sample-sigconf.tex \
+	sample-sigconf-authordraft.tex
 
-sview:
-	gnome-open ${BUILD_DIR}.pdf 2>/dev/null
+PDF = ${SAMPLES:%.tex=%.pdf}
 
-${BUILD_DIR}.pdf: main.tex
-	latexmk -pdf -silent \
-    -jobname=${BUILD_DIR} \
-    -pdflatex="pdflatex -interaction=nonstopmode" main.tex
+all:  ${PDF}
+
+
+%.pdf:  %.dtx   $(PACKAGE).cls
+	pdflatex $<
+	- bibtex $*
+	pdflatex $<
+	- makeindex -s gind.ist -o $*.ind $*.idx
+	- makeindex -s gglo.ist -o $*.gls $*.glo
+	pdflatex $<
+	while ( grep -q '^LaTeX Warning: Label(s) may have changed' $*.log) \
+	do pdflatex $<; done
+
+
+acmguide.pdf: $(PACKAGE).dtx $(PACKAGE).cls
+	pdflatex -jobname acmguide $(PACKAGE).dtx
+	- bibtex acmguide
+	pdflatex -jobname acmguide $(PACKAGE).dtx
+	while ( grep -q '^LaTeX Warning: Label(s) may have changed' acmguide.log) \
+	do 	pdflatex -jobname acmguide $(PACKAGE).dtx; done
+
+%.cls:   %.ins %.dtx
+	pdflatex $<
+
+%.pdf:  %.tex   $(PACKAGE).cls ACM-Reference-Format.bst
+	pdflatex $<
+	- bibtex $*
+	pdflatex $<
+	pdflatex $<
+	while ( grep -q '^LaTeX Warning: Label(s) may have changed' $*.log) \
+	do pdflatex $<; done
+
+sample-sigconf.pdf \
+sample-sigconf-authordraft.pdf: samplebody-conf.tex
+
+
+.PRECIOUS:  $(PACKAGE).cfg $(PACKAGE).cls
+
 
 clean:
-	rm ${BUILD_DIR}.pdf
+	$(RM)  $(PACKAGE).cls *.log *.aux \
+	*.cfg *.glo *.idx *.toc \
+	*.ilg *.ind *.out *.lof \
+	*.lot *.bbl *.blg *.gls *.cut *.hd \
+	*.dvi *.ps *.thm *.tgz *.zip *.rpi
 
-cleaner:
-	latexmk -CA
-	# remove auxillary files, excepting .tex and .bib files
-	find . -type f -name ${BUILD_DIR}"*" ! -name '*.tex' ! -name '*.bib' -delete
-	rm -f main.nav main.snm
+distclean: clean
+	$(RM) $(PDF) *-converted-to.pdf
+
+#
+# Archive for the distribution. Includes typeset documentation
+#
+archive:  all clean
+	COPYFILE_DISABLE=1 tar -C .. -czvf ../$(PACKAGE).tgz --exclude '*~' --exclude '*.tgz' --exclude '*.zip'  --exclude CVS --exclude '.git*' $(PACKAGE); mv ../$(PACKAGE).tgz .
+
+zip:  all clean
+	zip -r  $(PACKAGE).zip * -x '*~' -x '*.tgz' -x '*.zip' -x CVS -x 'CVS/*'
+
+documents.zip: all
+	zip $@ acmart.pdf acmguide.pdf sample-*.pdf
