@@ -6,12 +6,6 @@ Both tend to have mutational outcomes that are superior in fitness to those of t
 The bottleneck and denoising mappings were observed to free evolution from getting stuck at local fitness peaks, as occurred under the direct mapping, and instead enable progress towards a global fitness peak.
 Thus, in the $n$-leg table domain, the proposed genotype-phenotype maps seem to enhance evolvability in both a practical and theoretical sense.
 
-Hand-design of genotype-phenotype maps is common practice in evolutionary computing.
-These genotype-phenotype mappings, such as NEAT, have been used with good success and studied extensively \cite{stanley2002efficient}.
-In particular, there has been interest in designing dynamic genotype-phenotype mappings that are influenced by the contents of a genome, as occurs in nature, so that an evolvable mapping may themselves be evolved \cite{reisinger2007acquiring}.
-Nonetheless, existing genotype-phenotype mappings can be domain-specific;
-a scheme useful for artificial neuroevolution, for example, likely isn't useful in a linear genetic programming context.
-
 The proposed techniques to generate evolvable genotype-phenotype mappings are in principal generalizable to any context in which many phenotypes at local fitness peaks can be surveyed (i.e. extensive exploratory evolution with a direct encoding isn't computationally prohibitive) and phenotypes can be represented as a continuous-valued, constant-length vector.
 Using these techniques may reduce the human labor and expertise required to design evolvable genotype-phenotype mappings for new evolutionary computing domains.
 Further, these autoencoder-based approaches might yield more evolvable genotype-phenotype maps than human design for existing evolutionary computing domains.
