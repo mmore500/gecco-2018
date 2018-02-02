@@ -39,7 +39,6 @@ To rival that of natural systems
 Evolvability is desirable in artificial evolution systems for practical ends --- developing more evolvable artificial evolution systems will allow evolutionary algorithms to tackle more sophisticated problems more effectively.
 Understanding evolvability is also important to scientific ends for evolutionary biologists and evolutionary computing researchers alike  \cite{mengistu2016evolvability, pigliucci2008evolvability}.
 
-
 \subsection{Genotype-Phenotype Map and Evolvability}
 
 In biological science, a distinction is drawn between an organism's genotype and phenotype.
@@ -50,18 +49,23 @@ It is useful to abstract development as a mathematical function that takes genet
 This mathematical function representing development is referred to as the genotype-phenotype map \cite{alberch1991genes}.
 
 The nature of the genotype-phenotype map employed in an evolving system is thought to influence that system's evolvability \cite{pigliucci2010genotype}.
-Let us review three theoretical constructs that are useful to understanding the relationship between the genotype-phenotype map and evolvability: latent evolvability, acquired evolvability, and innate evolvability.
+Let us discuss three theoretical constructs that are useful to understanding the relationship between the genotype-phenotype map and evolvability: latent evolvability, acquired evolvability, and innate evolvability.
 
 The terms latent evolvability and acquired evolvability were introduced by Reisinger et al. in \cite{reisinger2005towards} to discuss canalization, the ability of a population to bias the types of phenotypic variability generated among its offspring in order to exploit fitness biases specific to its environment.
 It is key to observe that canalization is a ``learned'' bias, developed over the course of evolution in response to selection pressure in a particular environment \cite{reisinger2005towards}.
-Latent evolvability describes a representation's potential to exhibit canalization while acquired evolvability describes actual canalization exhibited by an evolving population in response to a particular fitness environment.
-I introduce the term innate evolvability to describe bias towards viable variation that is inherent to a representational scheme.
+Latent evolvability describes a genotype-phenotype map's potential to exhibit canalization while acquired evolvability describes actual canalization exhibited by an evolving population in response to a particular fitness environment.
+I introduce the term innate evolvability to describe bias towards viable variation that is inherent to a genotype-phenotype map.
 For example, Clune et al. identify bias towards phenotypic regularity, which in certain environments tends to be a useful trait, as an inherent quality of indirect genetic encoding \cite{clune2008generative}.
 
-1) latent --- design an encoding
-2) acquired --- use selection to try to get here (i.e. evolvability selection, modularly varying environments, etc.)
-3) innate --- design an encoding
+Innate, latent, and acquired evolvability all provide opportunities for intervention  by digital evolution researchers to get evolvable genotype-phenotype mapping.
+1) latent --- design an encoding \cite{reisinger2005towards},
+2) acquired --- use selection to try to get here (i.e. evolvability selection, modularly varying environments, etc.) \cite{mengistu2016evolvability, kashtan2005spontaneous} (relies on genotype-phenotype map exhibiting innate evolvability)
+3) innate --- design an encoding \cite{clune2011performance}.
 
+
+Hand-designing genotype-phenotype mappings that exhibit latent evolvability and innate evolvability is
+1) hard
+2) problem-specific
 
 + evolvable G-P maps
   + It is of theoretical interest to study genotype-phenotype maps and their relation to evolvable and practical interest to be able to work with them: more evolvable G-P maps enables more sophisticated digital evolution.
@@ -70,7 +74,6 @@ For example, Clune et al. identify bias towards phenotypic regularity, which in 
   + evolve them \cite{reisinger2007acquiring}
 
 
-  In digital evolution, the
 
   In fact, the distinction can become blurred in the realm of evolutionary algorithms, where the phenotypic characteristics of an individual might be directly encoded in the genotype.
 
@@ -82,15 +85,19 @@ For example, Clune et al. identify bias towards phenotypic regularity, which in 
   a scheme useful for artificial neuroevolution, for example, likely isn't useful in a linear genetic programming context.
 
 
-\subsection{Learning a Genotype-Phenotype Map}
+\subsection{Evolution and Learning}
 
 I propose a propose a third way: directly learn an evolvable genotype-phenotype mapping using machine learning techniques for unsupervised learning.
 This idea is inspired by the notion that natural evolution learns to generalize \cite{kouvaris2017evolution} \cite{watson2016can}
 
+he question thus arises: is evolution by natural selection (e.g., by adapting the organization of developmental processes) able to facilitate subsequent adaptation in the same way that a learning system can exploit knowledge from past experience? If so, evolution might be a ‘smarter’ problem solver than generally appreciated and learning theory could explain how. \cite{watson2016can}
+
+A potential resolution is provided by the idea that evolution may discover and exploit information not only about the particular phenotypes selected in the past, but their underlying structural regularities: new phenotypes, with the same underlying regularities, but novel particulars, may then be useful in new environments. \cite{kouvaris2017evolution}
+
+We support the conclusion that evolving systems and learning systems are different instantiations of the same algorithmic principles by showing that existing results from the learning domain can be transferred to the evolution domain \cite{kouvaris2017evolution}
+
 This paper proposes a different take on automatic generation of evolvable genotype-phenotype mapping by proposing two techniques to directly learn evolvable genotype-phenotype mappings through artificial neural network autoencoders.
 It is hoped that this project will yield useful evolutionary computing methodology to achieve automatic design of highly evolvable genotype-phenotype mappings.
-
-
 
 \subsection{Autoencoder Neural Networks}
 
@@ -121,5 +128,4 @@ The idea of this design is that mutations that would otherwise be deleterious wi
 Effectively, this mapping should flatten out the valleys between local fitness peaks to allow evolution to more readily drift between those local fitness peaks.
 
 
-Then
-\cite{lecun2015deep}
+\subsection{Learning an Evolvable Genotype-Phenotype Mapping}
