@@ -1,67 +1,35 @@
-\section{Results and Discussion}
+\section{Results and Discussion} \label{sec:results}
 
-A pair of experiments was performed to assess the evolvability of the denoising autoencoder and the bottleneck decoder genotype-phenotype maps in relation to the direct genotype-phenotype map.
-A high-level overview of these experiments is provide immediately below.
+Assessment of evolvability signatures and observed response to selective pressure towards a global fitness peak shows that both autoencoder-derived genotype-phenotype maps enhance evolvability relative to the direct encoding.
+
+TODO
 
 
-First, in evolvability signature experiments the novelty and deleteriousness of mutation was assessed under these three genotype-phenotype maps.
-Populations of 300 individuals were evolved using a particular map for 50 generations.
+\subsection{$n$-legged Table Problem}
+
+\input{fig/all_es.tex}
+
+Evolvability signature analysis was used to characterize the evolvability of the learned $n$-legged table bottleneck and denoiser encodings.
+To generate these signatures, 40 replicate populations were evolved for 50 generations.
 Then, the individual with the best fitness score over those 50 generations was isolated.
-Mutant offspring of that individual were assessed for phenotypic novelty in relation to their parent and fitness score.
-Phenotypic novelty was assessed as the euclidean distance between a parent phenotype $\vec{p}$ and a child phenotype $\vec{x}$.
-Fitness was calculated according to the same criteria used during the 50 generations of evolution (described below).
-Forty replicate evolutionary runs were performed for each genotype-phenotype map.
-For each replicate run, 10,000 mutant offspring of the sampled champion were assessed.
-The novelty and fitness scores of these mutant offspring (pooled over all 40 replicate runs) was used to generate the evolvability signatures presented in Section \ref{sec:results} \cite{tarapore2015evolvability}.
+The novelty (euclidean distance between a parent phenotype and a child phenotype) and fitness scores of mutant offspring generated from that champion individual were used to create the evolvability signatures.
+Figure \ref{fig:all_es} provides evolvability signatures for the direct, bottleneck, and denoiser genotype-phenotype maps.
+It must be noted that in Figure \ref{fig:all_es}, the evolvability signature for each genotype-phenotype map are at radically different absolute scales.
+It can clearly be seen that the bottleneck mapping can generate much more novelty per mutational step than either of the other mappings.
+Note that the absolute fitness scores of nearly all offspring under the bottleneck mapping are greater than the absolute fitness of offspring under the direct mapping.
+Although the novelty generated under the denoiser encoding via a single mutational step is comparable to the direct encoding, the absolute fitness of offspring under this mapping tends to be greater than those under the direct mapping.
 
-Second, experiments were performed to assess the ability of the three genotype-phenotype maps to facilitate traversal of the evolutionary search space in response to a selective pressure.
+Next, experiments were performed to assess the ability of the three genotype-phenotype maps to facilitate traversal of the evolutionary search space in response to a selective pressure.
 Specifically, a selective pressure for short (i.e. zero) table height was added.
 Table height is calculated as the mean leg length of a table.
 For each map, three replicate populations of 300 individuals were evolved for 5,000 generations.
 These populations were initialized to have table height of approximately 1,000.
 Response to selective pressure for short table height was assessed by tracking mean table height of the populations generation-by-generation.
 
-
-
-
-\section{Results} \label{sec:results}
-
-Assessment of evolvability signatures and observed response to selective pressure towards a global fitness peak shows that both autoencoder-derived genotype-phenotype maps enhance evolvability relative to the direct encoding.
-
-\subsection{Evolvability Signatures}
-
-\input{fig/all_es.tex}
-\input{fig/all_es_scaled.tex}
-\input{fig/noise_severe_compare_es.tex}
-
-
-Figure \ref{fig:all_es} provides evolvability signatures for the direct, bottleneck, and denoiser genotype-phenotype maps.
-These evolvability signatures are heat maps that summarize the outcomes observed under mutation for
-
-As is expected, in all the direct and bottleneck evolvability signatures, offspring fitness tends to decrease somewhat as is expected.
-Surprisingly, under the denoising mapping this is not true.
-This suggests that the denoising mapping is better able to generate novelty without losing of fitness or, put another way, that mutation tends to be mildly deleterious.
-
-It must be noted that in Figure \ref{fig:all_es}, the evolvability signature for each genotype-phenotype map are at radically different absolute scales.
-Figure \ref{fig:all_es_scaled.tex} compares the evolvability signatures of the three genotype-phenotype maps at the same absolute scale.
-It can clearly be seen that the bottleneck mapping can generate much more novelty per mutational step than either of the other mappings.
-Note that the absolute fitness scores of nearly all offspring under the bottleneck mapping are greater than the absolute fitness of offspring under the direct mapping.
-The same is true of the denoising mapping.
-
-Because mutation under the direct and denoising mappings tend to have relatively small phenotypic effects, ``severe'' evolvability signatures were generated to better compare the evolvability of these two mappings.
-These severe signatures, shown in Figure \ref{fig:noise_severe_compare_es}, are generated as before, except instead of applying a single mutation to generate mutant offspring from a parent 100 mutations were applied.
-Thus, these charts reflect the novelty and fitness outcomes of larger mutational steps in the genotype space.
-From this comparison, it can be seen that somewhat greater novelty tends to be generated under the direct mapping.
-However, much better fitness outcomes are observed with the denoising mapping.
-Again, novelty seems to be generated with little or no fitness cost.
-Thus, the denoising mapping appears to produce more useful variation than the direct mapping.
-
-\subsection{Response to Selection}
-
 \input{fig/select_response.tex}
 
-Figure \ref{fig:select_response} plots mean table height by generation under selection for both short table height and table stability (described in detail in Section \ref{sec:methods}).
-Error bars representing standard deviation between three replicate runs, although so minuscule as not to be easily visible, are provided every 1,000 generations.
+Figure \ref{fig:select_response} plots mean table height by generation under selection for both zero table height and table stability (described in detail in Section \ref{sec:methods}).
+Shaded areas, hugging the table height trajectories so tight as to be difficult to discern, represent bootstrapped 95\% confidence intervals ($n=3$).
 
 Under the direct mapping, a slight decrease in mean table height is observed for a few generations after initialization.
 However, no further decrease in mean table height was observed over the course of evolutionary runs.
@@ -75,4 +43,15 @@ Populations with the bottleneck mapping were able to quickly respond to selectiv
 Finally, under the denoising mapping, a slight drop-off in mean table height is observed after initialization.
 Then, a steady decrease in table height was observed for the remainder of the evolutionary runs.
 These runs ended with a mean table height of approximately 630.
-Although not as quickly as under the bottleneck mapping, under the denoising mapping populations were still able to respond to selective pressure for short table height.
+Although not as swiftly as under the bottleneck mapping, under the denoising mapping populations were still able to respond to selective pressure for short table height.
+
+Cursory inspection of input/output of the decoding component of the bottleneck autoencoder revealed that it had learned to echo the single bottlenecked float in order to uniformly populate the vector of 100 phenotypic leg lengths.
+Thus, the bottleneck genetic representation essentially described the table height; table leg lengths were set using this height value via the genotype-phenotype map.
+Evolvability signature analysis suggests that this encoding allows the generation of greater novelty with less deleterious consequence.
+Indeed, as in Figure \ref{fig:select_response}, table populations using this encoding are able to rapidly evolve to a global fitness peak.
+Similar inspection of the denoising autoencoder revealed that that neural network had essentially learned to calculate each phenotypic leg length output as the average of its inputs.
+Thus, the denoising encoding took genetic input for what --- under the direct encoding --- would otherwise be an unstable table and output a stable table nearby in phenotype space.
+Evolvability signature analysis shows that although this encoding does not enhance the novelty of phenotypic outcomes under mutation relative to the direct encoding, it does curb the deleterious effects of mutation.
+Thus, as in Figure \ref{fig:select_response}, table populations using this encoding are able to make slow and steady progress towards a global fitness peak.
+
+\subsection{Scrabble String Problem}
