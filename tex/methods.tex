@@ -1,5 +1,31 @@
 \section{Methods} \label{sec:methods}
 
+TODO
+introduce two high-level methods for learning evolvable genotype-phenotype mappings
+discuss two problem domains used to demonstrate these methods and the specific implementation of the methods in each of those domains
+overview evolvability signature for the unfamiliar
+
+\subsection{Learning an Evolvable Genotype-Phenotype Mapping}
+
+The pair of proposed techniques to automatically learn evolvable genotype-phenotype mappings are based on autoencoders trained to encode phenotypes taken from local fitness peaks spread throughout an evolutionary search space.
+(These phenotypes are gathered by evolving a large number of replicate direct-encoded populations and retaining champion individuals from each population).
+
+\input{fig/bottleneck_map.tex}
+
+The first approach, the bottleneck map, exploits just the decoder portion of the bottleneck autoencoder.
+The decoder serves as the genotype-phenotype map so the genotype is now in the bottleneck vector space while the phenotype remains in the same vector space as before.
+The idea of this approach is that, because the bottleneck provides a compact representation of those high-fitness phenotypes, using the decoder as a genotype-phenotype mapping will readily allow mutation to move the phenotype between otherwise distant fitness peaks.
+This approach is illustrated in Figure \ref{fig:bottleneck_map}.
+
+\input{fig/denoiser_map.tex}
+
+The second approach, the denoiser map, employs the entire denoising autoencoder would be used as the genotype-phenotype mapping.
+Note that the genotype and phenotype remain in the same, equivalent vector spaces.
+The idea of this design is that mutations that would otherwise be deleterious will be interpreted as noise and prevented from being expressed by the genotype-phenotype mapping.
+Effectively, this mapping should flatten out the valleys between local fitness peaks to allow evolution to more readily drift between those local fitness peaks.
+This approach is illustrated in Figure \ref{fig:denoiser_map}.
+
+
 A pair of experiments was performed to assess the evolvability of the denoising autoencoder and the bottleneck decoder genotype-phenotype maps in relation to the direct genotype-phenotype map.
 A high-level overview of these experiments is provide immediately below.
 Methodological details can be found in the subsequent subsections.
@@ -122,4 +148,21 @@ The artificial neural network autoencoder components of this project were implem
 Experiments were run on a PC (no GPU).
 In total, the experiments reported used approximately 12 hours of compute time.
 
-Code components for this project are available at \url{https://github.com/mmore500/cse-848-project}.
+\subsection{$n$-legged Table Problem}
+TODO
+
+\subsection{Scrabble Problem}
+TODO
+
+\subsection{Evolvability Signature}
+Tarapore et al. introduced an evolvability measure that enables simultaneous inspection of both major aspects of evolvability --- viability and novelty of phenotypic outcomes under mutation \cite{tarapore2015evolvability}.
+They forgo use of a scalar metric to describe evolvability, instead reporting evolvability using what they term a ``signature.''
+Essentially, the signature is a two-dimensional heatmap presenting the changes in phenotypic form and fitness observed in individual offspring from a single parent.
+Normalized mutual information between the phenotypic states of parent and offspring is used to quantify the amount of change in phenotypic form observed in an offspring.
+Proportion decrease in fitness is used to quantify the fitness difference between parent and offspring.
+For a highly evolvable individual, we would expect to see offspring occurring with significant frequency in the corner of the heatmap indicating significant change in phenotypic form with slight or no loss of fitness.
+The evolvability signature provides a nuanced snapshot of evolvability, allowing for interaction between the two primary components of evolvability to be visualized.
+Such information can be highly diagnostic, for example alerting researchers to phenomena that might appear falsely promising using other metrics, such as genetic changes that alter phenotypic form significantly but at great cost to fitness or genetic changes that are beneficial to fitness but fail to uncover novel phenotypic form.
+Figure \ref{fig:reading_evolvability_signature} illustrates how an evolvability signature is laid out.
+
+\input{fig/reading_evolvability_signature.tex}
