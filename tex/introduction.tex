@@ -1,0 +1,18 @@
+\section{Introduction} \ref{sec:introduction}
+
+Successful evolutionary search depends the production of heritable, novel phenotypic variation, some of which must not be severely deleterious.
+Without any heritable variation --- or even just without any viable heritable variation --- evolution stagnates.
+The capacity of a population to generate viable heritable phenotypic variation is referred to as evolvability.
+Different evolving systems can exhibit different degrees of evolvability.
+Natural systems, in particular, are thought to generally exhibit greater evolvability than digital evolution systems \cite{wagner1996perspective}.
+Understanding --- and replicating --- the evolvability of natural evolution is an open problem in digital evolution research \cite{mengistu2016evolvability}.
+
+Evolvability is desirable in artificial evolution systems for practical ends --- developing more evolvable artificial evolution systems will allow evolutionary algorithms to tackle sophisticated problems more effectively and efficiently \cite{bentley1999three, reisinger2007acquiring}.
+In addition, understanding evolvability is additionally of great scientific interest for evolutionary biologists and evolutionary computing researchers alike \cite{mengistu2016evolvability, pigliucci2008evolvability}, particularly with respect to the addressing questions related to the evolution of complexity and open-ended evolution \cite{kirschner1998evolvability, hu2010evolvability}.
+
+Indeed, there has been great interest in studying evolvability using computational systems and, in particular, developing techniques to promote evolvability in digital evolution \cite{kashtan2005spontaneous, mengistu2016evolvability, reisinger2005towards, cheney2013unshackling, nguyen2015innovation, lehman2013evolvability}.
+Inspired by recent theoretical advances applying learning theory to the topic of evolvability \cite{kouvaris2017evolution, watson2016can}, we propose methodology based on autoencoder artificial neural networks that allows evolvable genotype-phenotype encodings to be learned by training on phenotypes harvested from local fitness peaks.
+We call our approach AutoMap.
+One variant of AutoMap employs a denoising autoencoder to learn a representation that buffers phenotypes near local fitness peaks against mutation until a mutational threshold is reached where the phenotype shifts to the vicinity of a different local fitness peak.
+The second AutoMap variant employs a bottlenecked autoencoder to learn a representation where small steps in the genotype space yield significant phenotypic novelty while protecting phenotypic viability.
+In principle, the methodology introduced is general enough to apply across a wide variety of digital evolution problem domains.
