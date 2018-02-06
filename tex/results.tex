@@ -5,16 +5,17 @@
 \input{fig/all_es.tex}
 
 Evolvability signature analysis was used to characterize the evolvability of the learned $n$-legged table bottleneck and denoiser encodings.
-To generate these signatures, 40 replicate populations were evolved for 50 generations.
-Then, the individual with the best fitness score over those 50 generations was isolated.
+To generate these signatures, 20 replicate populations were evolved for 250 generations.
+Then, the individual with the best fitness score over those 250 generations was isolated.
 The novelty (euclidean distance between a parent phenotype and a child phenotype) and fitness scores of mutant offspring generated from that champion individual were used to create the evolvability signatures.
 Figure \ref{fig:all_es} provides evolvability signatures for the direct, bottleneck, and denoiser genotype-phenotype maps.
-It must be noted that in Figure \ref{fig:all_es}, the evolvability signature for each genotype-phenotype map are at radically different absolute scales.
 It can clearly be seen that the bottleneck mapping can generate much more novelty per mutational step than either of the other mappings.
-Note that the absolute fitness scores of nearly all offspring under the bottleneck mapping are greater than the absolute fitness of offspring under the direct mapping.
-Although the novelty generated under the denoiser encoding via a single mutational step is comparable to the direct encoding, the absolute fitness of offspring under this mapping tends to be greater than those under the direct mapping.
+Fitness does decline in tandem with novelty, but the absolute fitness scores of nearly all offspring under the bottleneck mapping are greater than the absolute fitness of the direct-evolved champions (not shown).
+Relatedly, although beneficial mutational outcomes are observed frequently under the direct encoding this is likely affected by relatively low absolute fitness of $-0.82$ ($s=0.1$) for direct-evolved champions (in comparison, for instance, to absolute fitness of $-0.025$, $s=0.004$ for denoiser-evolved champions).
+Finally, more novelty is produced by mutation under the direct encoding compared to the denoising encoding.
+The denoiser's action filtering out certain phenotypic variation likely contributes to observed the reduction of novelty observed under mutation.
 
-Next, experiments were performed to assess the ability of the three genotype-phenotype maps to facilitate traversal of the evolutionary search space in response to a selective pressure.
+Subsequently, we performed experiments to assess the ability of the three genotype-phenotype maps to facilitate traversal of the evolutionary search space in response to a selective pressure.
 Specifically, a selective pressure for short (i.e. zero) table height was added.
 Table height is calculated as the mean leg length of a table.
 For each map, three replicate populations of 300 individuals were evolved for 5,000 generations.
@@ -60,9 +61,9 @@ Evolvability signature analysis was used to characterize the evolvability of the
 To generate these signatures, 250 champion genotypes were drawn from the direct-encoded populations used to train the denoiser encoding.
 100-step mutational walks were then taken from the champion genotype.
 The phenotypes generated from those genotypes under both the direct and the denoising encoding were compared.
-Figure \ref{fig:scrabble_dist_vs_step} plots novelty (number of non-matching phenotypic characters between the original champion and its mutant offspring) against mutational step.
+Figure \ref{fig:scrabble_dist_vs_step} plots novelty (number of non-matching phenotypic characters between the original champion and its mutant offspring) against mutational step ($n=250$).
 Novelty increases more rapidly under the denoiser encoding relative to the direct encoding.
-Figure \ref{fig:scrabble_fit_diff_vs_step} plots fitness relative to the original champion against mutational step.
+Figure \ref{fig:scrabble_fit_diff_vs_step} plots fitness relative to the original champion against mutational step ($n=250$).
 Fitness declines more slowly under mutation with the denoiser encoding compared to the direct encoding.
 In both of these figures, bootstrapped 95\% confidence are shaded along each curve but are tight enough to be difficult to discern.
 Figure \ref{fig:scrabble_es_kde} ties together fitness and novelty information from these random mutational walks in the format of an evolvability signature.
@@ -72,7 +73,7 @@ From this comparison, it seems that the denoiser encoding simultaneously yields 
 Subsequently, we tested the capacity of the denosier encoding to speed up adaptive evolution.
 We set up twenty replicate Scrabble string populations to use the the denoiser genotype-phenotype map and twenty Scrabble string populations to use the direct map.
 For each population, maximum fitness was recorded over 1,000 generations of evolution.
-Figure \ref{fig:scrabble_fit_vs_gen} shows that the populations using the denoiser encoding gain fitness at a much quicker rate than the direct encoding over the first few hundred generations.
+Figure \ref{fig:scrabble_fit_vs_gen} shows that the populations using the denoiser encoding gain fitness at a much quicker rate than the direct encoding over the first few hundred generations ($n=20$).
 (Again, bootstrapped 95\% confidence are shaded along each curve.)
 Clearly, the evolvability properties of the denoiser encoding translate to evolutionary dynamics that differ strongly from the direct encoding.
 

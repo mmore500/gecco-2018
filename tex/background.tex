@@ -70,14 +70,12 @@ Autoencoders are artificial neural networks that are trained to regurgitate as o
 Such networks are used to discover efficient lower-dimensional codings for datasets and, more recently, as method for generative modeling \cite{liou2014autoencoder, kingma2013auto}.
 We will use two specific types of autoencoders: the bottlenecked autoencoder and the denoising autoencoder.
 
-\input{fig/bottleneck.tex}
+\input{fig/autoencoders.tex}
 
 Figure \ref{fig:bottleneck} provides a schematic depiction of a bottleneck autoencoder.
 This autoencoder has a small layer in the middle that information must pass through to reach the output.
 Thus, the autoencoder is forced to learn a compact representation for the inputs it is trained with that can pass through the bottleneck.
 The part of the autoencoder that precedes the bottleneck is called the encoder and the part that follows is called the decoder.
-
-\input{fig/denoiser.tex}
 
 Figure \ref{fig:denoiser} provides a schematic depiction of a denoising autoencoder.
 These autoencoders are trained to take noisy input and, from that noisy input, recover a signal in its original unadulterated form.
