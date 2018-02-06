@@ -1,3 +1,27 @@
+A pair of experiments was performed to assess the evolvability of the denoising autoencoder and the bottleneck decoder genotype-phenotype maps in relation to the direct genotype-phenotype map.
+A high-level overview of these experiments is provide immediately below.
+
+
+First, in evolvability signature experiments the novelty and deleteriousness of mutation was assessed under these three genotype-phenotype maps.
+Populations of 300 individuals were evolved using a particular map for 50 generations.
+Then, the individual with the best fitness score over those 50 generations was isolated.
+Mutant offspring of that individual were assessed for phenotypic novelty in relation to their parent and fitness score.
+Phenotypic novelty was assessed as the euclidean distance between a parent phenotype $\vec{p}$ and a child phenotype $\vec{x}$.
+Fitness was calculated according to the same criteria used during the 50 generations of evolution (described below).
+Forty replicate evolutionary runs were performed for each genotype-phenotype map.
+For each replicate run, 10,000 mutant offspring of the sampled champion were assessed.
+The novelty and fitness scores of these mutant offspring (pooled over all 40 replicate runs) was used to generate the evolvability signatures presented in Section \ref{sec:results} \cite{tarapore2015evolvability}.
+
+Second, experiments were performed to assess the ability of the three genotype-phenotype maps to facilitate traversal of the evolutionary search space in response to a selective pressure.
+Specifically, a selective pressure for short (i.e. zero) table height was added.
+Table height is calculated as the mean leg length of a table.
+For each map, three replicate populations of 300 individuals were evolved for 5,000 generations.
+These populations were initialized to have table height of approximately 1,000.
+Response to selective pressure for short table height was assessed by tracking mean table height of the populations generation-by-generation.
+
+
+
+
 \section{Results} \label{sec:results}
 
 Assessment of evolvability signatures and observed response to selective pressure towards a global fitness peak shows that both autoencoder-derived genotype-phenotype maps enhance evolvability relative to the direct encoding.
