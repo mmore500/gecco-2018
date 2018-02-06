@@ -142,11 +142,9 @@ These particular operator and parameter choices were made mainly by happenstance
 Tarapore et al. introduced an evolvability measure that enables simultaneous inspection of both major aspects of evolvability --- viability and novelty of phenotypic outcomes under mutation \cite{tarapore2015evolvability}.
 They forgo use of a scalar metric to describe evolvability, instead reporting evolvability using what they term a ``signature.''
 Essentially, the signature is a two-dimensional heatmap presenting the changes in phenotypic form and fitness observed in individual offspring from a single parent.
-Normalized mutual information between the phenotypic states of parent and offspring is used to quantify the amount of change in phenotypic form observed in an offspring.
-Proportion decrease in fitness is used to quantify the fitness difference between parent and offspring.
 For a highly evolvable individual, we would expect to see offspring occurring with significant frequency in the corner of the heatmap indicating significant change in phenotypic form with slight or no loss of fitness.
 The evolvability signature provides a nuanced snapshot of evolvability, allowing for interaction between the two primary components of evolvability to be visualized.
 Such information can be highly diagnostic, for example alerting researchers to phenomena that might appear falsely promising using other metrics, such as genetic changes that alter phenotypic form significantly but at great cost to fitness or genetic changes that are beneficial to fitness but fail to uncover novel phenotypic form.
-Figure \ref{fig:reading_evolvability_signature} illustrates how an evolvability signature is laid out.
-
-\input{fig/reading_evolvability_signature.tex}
+It is important to note that in these diagrams, fitness increases left-to-right and novelty increases top-to-bottom.
+Thus, the parental phenotype would be placed in the upper right of the diagram.
+Likewise, mutant phenotypes that are both novel and viable are placed in the lower right of the diagram.
