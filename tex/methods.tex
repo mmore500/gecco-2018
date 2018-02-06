@@ -15,7 +15,7 @@ The pair of proposed techniques to automatically learn evolvable genotype-phenot
 The first approach, the bottleneck map, uses just the decoder portion of the bottleneck autoencoder.
 The decoder serves as the genotype-phenotype map so the genotype is now in the bottleneck vector space while the phenotype remains in the same vector space as before.
 The idea of this approach is that, because the bottleneck provides a compact representation of those high-fitness phenotypes, using the decoder as a genotype-phenotype mapping will readily allow mutation to move the phenotype between otherwise distant fitness peaks.
-This approach is illustrated in Figure \ref{fig:bottleneck_map}.
+Figure \ref{fig:bottleneck_map} illustrates how the decoder component of the bottleneck encoding is employed to define a genotype-phenotype mapping.
 
 \input{fig/denoiser_map.tex}
 
@@ -23,7 +23,7 @@ The second approach, the denoiser map, employs the entire denoising autoencoder 
 Note that the genotype and phenotype remain in the same, equivalent vector spaces.
 The idea of this design is that mutations that would otherwise be deleterious will be interpreted as noise and prevented from being expressed by the genotype-phenotype mapping.
 Effectively, this mapping should flatten out the valleys between local fitness peaks to allow evolution to more readily drift between those local fitness peaks.
-This approach is illustrated in Figure \ref{fig:denoiser_map}.
+Figure \ref{fig:denoiser_map} illustrates how the denoiser autoencoder is used to define a genotype-phenotype mapping.
 
 \subsection{$n$-legged Table Problem}
 
