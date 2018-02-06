@@ -65,42 +65,15 @@ Thus, the ability of genotype-phenotype map to facilitate evolution will be refl
 
 \subsection{Scrabble String Problem}
 
-A simple problem is used to investigate the genotype-phenotype map generation techniques proposed.
-This problem, the $n$-legged table problem, models a table design scenario
-in which stable tables are highly advantageous.
-In this scenario, the phenotype of a table is nothing more than a collection of continuous-valued individual leg lengths.
-All other details of table design are neglected.
-The stability of a table is assumed to result solely from uniform lengths between table legs.
-Clearly, as $n$ grows beyond eight or so this toy problem begins to lose a meaningful connection to real world tables.
-(When was the last time you saw a fifty-legged table?)
-However, mathematically (and intuitively) the $n$-legged table problem scales easily.
-We arbitrarily use $n=100$ for all experiments in this domain.
-
-This toy problem was chosen because it creates an easy-to-characterize rugged fitness landscape.
-Because unstable tables are disadvantageous, mutations to level tables tend to be deleterious.
-Thus, evolving between different table heights --- i.e. escaping local maxima --- becomes a tricky challenge.
-
-For evolvability signature experiments, ``level-ness'' was the sole criterion determining fitness score.
-For a phenotype $\vec{x}$, the fitness score was computed as
-\begin{align*}
--\sigma(\vec{x})
-\end{align*}
-where $\sigma$ represents calculation of standard deviation.
-Note that in all experiments performed, selection was performed to maximize (not minimize) fitness score.
-Under this criterion, each level table of a particular height is a local fitness peak because any single-site mutation increases the leg height variance.
-This fitness criteria was chosen for evolvability signature experiments because of its ruggedness.
-
-For response to selection experiments, the ``level-ness'' and absolute height of a table were both factored into the fitness score.
-For a phenotype $\vec{x}$, the fitness score was computed as
-\begin{align*}
--\sigma(\vec{x}) - |\mu(\vec{x})/10|
-\end{align*}
-where $\sigma$ represents calculation of standard deviation and $\mu$ represents calculation of mean.
-Under this criterion, a selection pressure for short tables is applied.
-The global fitness score peak is the table with all legs length 0.
-However, the phenotypic fitness landscape remains rugged with local peaks occurring as before at level tables.
-Thus, the ability of genotype-phenotype map to facilitate evolution will be reflected by the ability of a population to escape local fitness peaks and progress towards the global fitness peak.
-
+The Scrabble string problem provides a more challenging testbed for the AutoMap approach.
+In this problem domain, phenotypes are 100-character strings consisting of the letters ``a'' through ``z'' and the `` '' (space) character.
+Fitness is determined as the count of letter characters contained in valid Scrabble words within the 100-character string.
+First and foremost, this problem was chosen because phenotypes --- and potential indirect genotype-phenotype maps --- were thought likely to be easily human-understandable.
+This problem also serves as a rough stand-in for linear genetic programming; both revolve around evolving sequences of symbols.
+Finally, working in this problem domain allowed us to leverage existing deep learning work with character-level representations of English language \cite{weiss2016spellling}.
+Like the $n$-legged table problem, the Scrabble string problem presents a rugged fitness landscape.
+Many changes to components to the phenotype that are part of a valid scrabble word will invalidate the word, sharply reducing the string's count of letter characters contained in valid Scrabble words.
+Thus, many mutations will have severely deleterious consequences.
 
 \subsection{Implementation}
 
