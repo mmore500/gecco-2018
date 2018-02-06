@@ -51,23 +51,28 @@ Thus, as in Figure \ref{fig:select_response}, table populations using this encod
 
 \subsection{Scrabble String Problem}
 
+\input{fig/scrabble_dist_vs_step.tex}
+\input{fig/scrabble_fit_diff_vs_step.tex}
+\input{fig/scrabble_es_kde.tex}
+\input{fig/scrabble_fit_vs_gen.tex}
+
 Evolvability signature analysis was used to characterize the evolvability of the learned denoiser encoding in the scrabble string.
 To generate these signatures, 250 champion genotypes were drawn from the direct-encoded populations used to train the denoiser encoding.
 100-step mutational walks were then taken from the champion genotype.
 The phenotypes generated from those genotypes under both the direct and the denoising encoding were compared.
-Figure TODO plots novelty (number of non-matching phenotypic characters between the original champion and its mutant offspring) against mutational step.
+Figure \ref{fig:scrabble_dist_vs_step} plots novelty (number of non-matching phenotypic characters between the original champion and its mutant offspring) against mutational step.
 Novelty increases more rapidly under the denoiser encoding relative to the direct encoding.
-Figure TODO plots fitness relative to the original champion against mutational step.
+Figure \ref{fig:scrabble_fit_diff_vs_step} plots fitness relative to the original champion against mutational step.
 Fitness declines more slowly under mutation with the denoiser encoding compared to the direct encoding.
 In both of these figures, bootstrapped 95\% confidence are shaded along each curve but are tight enough to be difficult to discern.
-Figure TODO ties together fitness and novelty information from these random mutational walks in the format of an evolvability signature.
+Figure \ref{fig:scrabble_es_kde} ties together fitness and novelty information from these random mutational walks in the format of an evolvability signature.
 Kernel density estimates contours of evolvability signature densities under both encodings are shown side-by-side.
 From this comparison, it seems that the denoiser encoding simultaneously yields more novelty and less fitness decline under mutation.
 
 Subsequently, we tested the capacity of the denosier encoding to speed up adaptive evolution.
 We set up twenty replicate Scrabble string populations to use the the denoiser genotype-phenotype map and twenty Scrabble string populations to use the direct map.
 For each population, maximum fitness was recorded over 1,000 generations of evolution.
-Figure TODO shows that the populations using the denoiser encoding gain fitness at a much quicker rate than the direct encoding over the first few hundred generations.
+Figure \ref{fig:scrabble_fit_vs_gen} shows that the populations using the denoiser encoding gain fitness at a much quicker rate than the direct encoding over the first few hundred generations.
 (Again, bootstrapped 95\% confidence are shaded along each curve.)
 Clearly, the evolvability properties of the denoiser encoding translate to evolutionary dynamics that differ strongly from the direct encoding.
 
