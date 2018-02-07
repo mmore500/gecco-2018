@@ -3,7 +3,7 @@
 We introduced AutoMap, a scheme to learn evolvable genotype-phenotype encodings via autoencoder artificial neural networks trained on champion phenotypes from a preliminary evolutionary search.
 We presented two variants of the AutoMap approach.
 One is built around a denoising autoencoder that yields a more neutral evolutionary search space through phenotypic robustness under mutation.
-The other employs a bottleneck autoencoder to yield a more compact representation
+The other employs a bottleneck autoencoder to yield a more compact representation.
 Both approaches were demonstrated to increase evolvability relative to the direct encoding in the context of a proof-of-concept test problem, the $n$-legged table problem.
 The denoiser approach was further demonstrated to increase evolvability in the more challenging Scrabble string problem.
 
@@ -17,7 +17,7 @@ AutoMap might reduce the human labor and expertise required to design evolvable 
 Further, these autoencoder-based approaches might yield more evolvable genotype-phenotype maps than human design for existing evolutionary computing domains.
 
 Unfortunately, autoencoder design and training itself typically requires skilled human input; AutoMap cannot entirely sidestep the need for manual labor.
-Indeed, the question of how to adapt autoencoder architecture and training to a less well-understood domains is a difficult one.
+Indeed, the question of how to adapt autoencoder architecture and training to a less well-understood domain is nontrivial.
 For example, questions such as ``What should the size of the bottleneck be for a bottlenecked autoencoder?'' or ``What type of noise should a denoising autoencoder be trained with?'' will need to be addressed in any application of AutoMap.
 It should also be noted that the success of AutoMap in any problem domain depends on the computational capacity to generate large amounts of training data through direct evolution and a willingness to accept the computational cost of performing a forward pass through the autoencoder component for each fitness evaluation when evolving with a learned genotype-phenotype map.
 Despite these limitations, we believe that the AutoMap approach to learning evolvable genotype-phenotype maps will prove a useful component of the computational evolution toolbox.

@@ -14,11 +14,11 @@ The denoiser's action filtering out certain phenotypic variation likely contribu
 \input{fig/select_response.tex}
 
 Subsequently, we assessed the ability of the three genotype-phenotype maps to facilitate traversal of the evolutionary search space in response to a selective pressure.
-Specifically, a selective pressure for short table height was added.
+Specifically, a selection pressure for short table height was added.
 Table height is calculated as the mean leg length of a table.
 For each map, we evolved three replicate populations of 300 individuals for 5,000 generations.
 We initialized these populations to have table height of approximately 1,000.
-Response to selective pressure for short table height was assessed by tracking mean table height of the populations generation-by-generation.
+Response to selection pressure for short table height was assessed by tracking mean table height of the populations generation-by-generation.
 Figure \ref{fig:select_response} plots mean table height by generation under selection for both zero table height and table stability.
 Shaded areas, hugging the table height trajectories so tight as to be difficult to discern, represent bootstrapped 95\% confidence intervals ($n=3$).
 
@@ -31,18 +31,18 @@ Under the bottleneck mapping, a switft decrease in mean table height is observed
 Well within 100 generations, the populations approached to the global fitness peak of a perfectly level table with height zero.
 Populations with the bottleneck mapping were able to quickly respond to selective pressure for short table height.
 
-Finally, under the denoising mapping, a slight drop-off in mean table height is observed after initialization, followed by a steady decrease in table height was observed for the remainder of the evolutionary runs.
+Under the denoising mapping, a slight drop-off in mean table height occurs after initialization, followed by a steady decrease in table height over the remainder of the evolutionary time.
 These runs ended with a mean table height of approximately 630.
-Although not as swiftly as under the bottleneck mapping, under the denoising mapping populations were still able to respond to selective pressure for short table height.
+Although not as swiftly as under the bottleneck mapping, denoiser-encoded populations were still able to respond to selective pressure for short table height.
 
 Cursory inspection of input/output of the decoding component of the bottleneck autoencoder revealed that it had learned to echo the single bottlenecked float in order to uniformly populate the vector of 100 phenotypic leg lengths.
-Thus, the bottleneck genetic representation essentially described the table height; table leg lengths were set using this height value via the genotype-phenotype map.
-Evolvability signature analysis suggests that this encoding allows the generation of greater novelty with less deleterious consequence.
-Indeed, as in Figure \ref{fig:select_response}, table populations using this encoding are able to rapidly evolve to a global fitness peak.
+Thus, the bottleneck genetic representation essentially described the table height; table leg lengths were set to this height value via the genotype-phenotype map.
+Evolvability signature analysis suggests that this encoding allows the generation of substantial novelty with mild deleterious consequence.
+Indeed, as shown in Figure \ref{fig:select_response}, table populations using this encoding are able to rapidly evolve to a global fitness peak.
 Similar inspection of the denoising autoencoder revealed that that neural network had essentially learned to calculate each phenotypic leg length output as the average of its inputs.
 Thus, the denoising encoding took genetic input for what --- under the direct encoding --- would otherwise be an unstable table and output a stable table nearby in phenotype space.
-Evolvability signature analysis shows that although this encoding does not enhance the novelty of phenotypic outcomes under mutation relative to the direct encoding, it does curb the deleterious effects of mutation.
-Thus, as in Figure \ref{fig:select_response}, table populations using this encoding are able to make slow and steady progress towards a global fitness peak.
+Although this encoding does not enhance the novelty of phenotypic outcomes under mutation relative to the direct encoding, it does curb the deleterious effects of mutation.
+Thus, as shown in Figure \ref{fig:select_response}, table populations using this encoding are able to make slow and steady progress towards a global fitness peak.
 
 \subsection{Scrabble String Problem}
 
