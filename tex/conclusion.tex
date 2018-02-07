@@ -8,7 +8,7 @@ Both approaches were demonstrated to increase evolvability relative to the direc
 The denoiser approach was further demonstrated to increase evolvability in the more challenging Scrabble string problem.
 
 Much work is left to be done.
-As immediate next steps, the bottleneck approach should be demonstrated in the Scrabble string domain and the capacity of both approaches to facilitate evolution towards higher-value fitness peaks in the Scrabble string domain --- perhaps by defining high-level criteria to be rewarded in addition to the low-level spelling criteria --- should be explored.
+As immediate next steps, the bottleneck approach should be demonstrated in the Scrabble string domain and the capacity of both approaches to facilitate evolution towards higher-value fitness peaks should be explored, perhaps by defining high-level criteria to be rewarded in addition to the low-level spelling criteria.
 In addition, this approach should be put in explicit conversation with recent thinking about parallels between the principles of machine learning and the evolution of evolvability \cite{kouvaris2017evolution, watson2016can}.
 
 Indeed, this exploratory work only scratches the surface of the possible applications of the AutoMap approach.
@@ -20,5 +20,4 @@ Unfortunately, autoencoder design and training itself typically requires skilled
 Indeed, the question of how to adapt autoencoder architecture and training to a less well-understood domains is a difficult one.
 For example, questions such as ``What should the size of the bottleneck be for a bottlenecked autoencoder?'' or ``What type of noise should a denoising autoencoder be trained with?'' will need to be addressed in any application of AutoMap.
 It should also be noted that the success of AutoMap in any problem domain depends on the computational capacity to generate large amounts of training data through direct evolution and a willingness to accept the computational cost of performing a forward pass through the autoencoder component for each fitness evaluation when evolving with a learned genotype-phenotype map.
-
-Despite these limitations, it is hoped that the AutoMap approach to learning evolvable genotype-phenotype maps will find a place as a useful component of the digital evolution toolbox.
+Despite these limitations, we believe that the AutoMap approach to learning evolvable genotype-phenotype maps will prove a useful component of the computational evolution toolbox.

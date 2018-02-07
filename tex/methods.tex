@@ -2,7 +2,7 @@
 
 \subsection{Learning an Evolvable Genotype-Phenotype Mapping}
 
-The pair of proposed techniques to automatically learn evolvable genotype-phenotype mappings are based on autoencoders trained to encode phenotypes taken from local fitness peaks spread throughout an evolutionary search space.
+The pair of proposed techniques to automatically learn evolvable genotype-phenotype mappings are based on artificial neural network autoencoders trained to encode phenotypes taken from local fitness peaks spread throughout an evolutionary search space.
 These phenotypes are gathered by evolving a large number of replicate direct-encoded populations and retaining champion individuals from each population.
 
 \input{fig/maps.tex}
@@ -15,7 +15,7 @@ Figure \ref{fig:bottleneck_map} illustrates how the decoder component of the bot
 The second approach, the denoiser map, employs the entire denoising autoencoder as the genotype-phenotype mapping.
 Note that the genotype and phenotype remain in the same, equivalent vector spaces.
 The idea of this design is that mutations that would otherwise be deleterious will be interpreted as noise and prevented from being expressed by the genotype-phenotype mapping.
-Effectively, this mapping should flatten out the valleys between local fitness peaks to allow evolution to more readily drift between peaks.
+Effectively, this mapping should flatten out the valleys between local fitness peaks in order to allow evolution to more readily drift between peaks.
 Figure \ref{fig:denoiser_map} illustrates how the denoiser autoencoder is used to define a genotype-phenotype mapping.
 
 \subsection{$n$-legged Table Problem}
@@ -43,7 +43,6 @@ For a phenotype $\vec{x}$, the fitness score was computed as
 where $\sigma$ represents calculation of standard deviation.
 Note that in all experiments, selection was performed to maximize (not minimize) fitness score.
 Under this criterion, each level table of a particular height is a local fitness peak because any single-site mutation increases the leg height variance.
-This fitness criteria was chosen for evolvability signature experiments because of its ruggedness.
 
 For response to selection experiments, the evenness of leg lengths and absolute height of a table were both factored into the fitness score.
 For a phenotype $\vec{x}$, the fitness score was computed as
@@ -52,7 +51,7 @@ For a phenotype $\vec{x}$, the fitness score was computed as
 \end{align*}
 where $\sigma$ represents calculation of standard deviation and $\mu$ represents calculation of mean.
 Under this criterion, a selection pressure for short tables is applied.
-The global fitness score peak is the table with all legs length 0.
+The global fitness score peak is the table with all legs length zero.
 However, the phenotypic fitness landscape remains rugged with local peaks occurring as before at level tables.
 Thus, the ability of genotype-phenotype map to facilitate evolution will be reflected by the ability of a population to escape local fitness peaks and progress towards the global fitness peak.
 
@@ -133,7 +132,6 @@ Mutation was performed by site-wise Gaussian perturbation of the genome.
 Mutations scrambled a single, randomly-chosen character in the genotype.
 We applied a per-individual mutation rate of 0.2 and a subsequent per-site mutation rate of 0.1 while evolving training data for the denoiser.
 For all other experiments, we used a per-individual mutation rate of 0.33 and a subsequent per-site mutation rate of 0.01.
-These particular operator and parameter choices were made based on intuitive expectation for creating a reasonable amount of variation in the population --- as before, it would be beneficial to repeat these experiments with other operator and parameter choices.
 
 \subsection{Evolvability Signature}
 Tarapore et al. introduced an evolvability measure that enables simultaneous inspection of both major aspects of evolvability --- viability and novelty of phenotypic outcomes under mutation \cite{tarapore2015evolvability}.
@@ -143,5 +141,6 @@ For a highly evolvable individual, we would expect to see offspring occurring wi
 The evolvability signature provides a nuanced snapshot of evolvability, allowing for interaction between the two primary components of evolvability to be visualized.
 Such information can be diagnostic, for example alerting researchers to phenomena that might appear falsely promising using other metrics, such as genetic changes that alter phenotypic form substantially but at great cost to fitness or genetic changes that are beneficial to fitness but fail to uncover novel phenotypic form.
 In these diagrams, fitness increases left-to-right and novelty increases top-to-bottom.
-Thus, the parental phenotype would be placed in the upper right of the diagram.
+Thus, the parental phenotype tends be placed in the upper right of the diagram.
+(With the occurrence of mutations that benefit fitness, the parental phenotype ends up placed closer to the upper middle of the diagram.)
 Likewise, mutant phenotypes that are both novel and viable are placed in the lower right of the diagram.

@@ -43,12 +43,12 @@ For example, Clune et al. identify bias towards phenotypic regularity, which in 
 Innate, latent, and acquired evolvability each represent an opportunity for intervention by digital evolution practitioners in pursuit of evolvability.
 Researchers can manually design an architecture for an evolving system (often inspired by the developmental processes in nature) that exhibits strong innate \cite{clune2011performance} or latent \cite{reisinger2005towards} evolvability.
 Indeed, hand-design of genotype-phenotype maps is ubiquitous in evolutionary computing \cite{wagner1996perspective}.
-Genotype-phenotype mappings have been built that demonstrably exhibit latent \cite{reisinger2007acquiring} and innate \cite{stanley2009hypercube, clune2011performance} evolvability.
-Such hand-designed genotype-phenotype mappings have been successfully used to solve complex problems \cite{woolley2010evolving, cheney2013unshackling}.
+Researchers have built genotype-phenotype mappings that exhibit latent \cite{reisinger2007acquiring} and innate \cite{stanley2009hypercube, clune2011performance} evolvability.
+Such hand-designed genotype-phenotype mappings have been used to solve complex problems \cite{woolley2010evolving, cheney2013unshackling}.
 Unfortunately, existing manually-designed genotype-phenotype mappings tend to be domain-specific --- a scheme useful for artificial neuroevolution, for example, is not likely to be useful for linear genetic programming.
 In addition, sophisticated genotype-phenotype mappings --- particularly those mimicking low-level aspects of embryological development --- can prove difficult to design and implement \cite[p 223]{downing2015intelligence}.
 
-Selection techniques like evolvability selection \cite{mengistu2016evolvability}, modularly varying environments \cite{kashtan2005spontaneous}, the provision of a large number of niches for different tasks \cite{nguyen2015innovation} etc. can be employed to steer evolving populations towards regions of the genotype space that bestow acquired evolvability.
+Selection techniques like evolvability selection \cite{mengistu2016evolvability}, modularly varying environments \cite{kashtan2005spontaneous}, the provision of a large number of niches for different tasks \cite{nguyen2015innovation}, etc. can be employed to steer evolving populations towards regions of the genotype space that bestow acquired evolvability.
 Although these approaches have been demonstrated successfully, they are inherently limited by the latent evolvability of the genotype-phenotype mapping with which they are employed \cite{reisinger2005towards}.
 
 \subsection{Evolution and Learning}
@@ -65,7 +65,7 @@ Our proposed AutoMap approach makes this hypothesized learning process explicit.
 
 We propose to learn evolvable genotype-phenotype mappings via autoencoder neural networks.
 Autoencoders are artificial neural networks that are trained to regurgitate as output the input that they were provided.
-Such networks are used to discover efficient lower-dimensional codings for datasets and, more recently, as method for generative modeling \cite{liou2014autoencoder, kingma2013auto}.
+Such networks are used to discover efficient lower-dimensional codings for datasets and, more recently, as a method for generative modeling \cite{liou2014autoencoder, kingma2013auto}.
 We will use two specific types of autoencoders: the bottlenecked autoencoder and the denoising autoencoder.
 
 \input{fig/autoencoders.tex}
@@ -79,4 +79,4 @@ Figure \ref{fig:denoiser} provides a schematic depiction of a denoising autoenco
 These autoencoders are trained to take noisy input and, from that noisy input, recover a signal in its original unadulterated form.
 
 Both the bottleneck and denoising autoencoders are unsupervised learning models: they do not require labeled training data.
-Instead, autoencoders learn to exploit structure in the unlabeled training data in order to perform compression or reconstruction of input.
+Instead, these autoencoders learn to exploit structure in the unlabeled training data in order to perform compression or reconstruction of input.
