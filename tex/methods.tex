@@ -97,22 +97,20 @@ Both encoders were easily trained on a PC (no GPU).
 
 For all $n$-legged table experiments, tournament selection with $k = 5$ was used.
 With probability $0.5$, offspring engaged in two-point crossover with one other individual.
-(Note, though, that when the bottleneck genotype-phenotype is was employed the genotype is a member of $\mathcal{R}$ so crossover has no effect.)
+(Note, though, that when the bottleneck genotype-phenotype is employed the genotype is a single float value so crossover has no effect.)
 Mutation was performed by site-wise Gaussian perturbation of the genome.
 For evolvability signature experiments, mutation of genome elements was $\mu=0, \sigma=0.1$ with a per-individual probability of $0.2$ and a subsequent per-site probability of $0.01$.
-For response to selection experiments, mutation of genome elements was $\mu=0, \sigma=0.1$ with a per-individual probability of $0.2$ and a per-site probability of $0.2$.
-(For all experiments with the bottleneck map, a per-site probability of $1$ $\sigma=0.1$ was employed.)
+For response to selection experiments, mutation of genome elements was $\mu=0, \sigma=0.1$ with a per-individual probability of $0.2$ and subsequent a per-site probability of $0.2$.
+(For all experiments with the bottleneck map, a per-site probability of $1$ was employed.)
 These particular operators were used due to their easy accessibility in DEAP.
-As these experiments were demonstrative instead of applied, the primary criteria
-for operators and parameters needed to meet was simply not being obscure enough to distract from the new genotype-phenotype mapping techniques being demonstrated.
-It would be beneficial to repeat these experiments with other operator and parameter choices popular in the literature and in applied use to investigate the generalizability of those new techniques.
+It would be beneficial to repeat these experiments with other common operator and parameter choices to investigate the generalizability of the AutoMap approach.
 
 \subsubsection{Scrabble String Problem}
 
 \input{fig/scrabble_denoiser_examples.tex}
 \input{fig/scrabble_denoiser.tex}
 
-For the Scrabble string problem, the denoising autoencoder consisted of: a 9,000-channel 1-dimensional convolution layer with kernel size 3, a ReLU layer, a 100-channel 1-dimensional convolution layer with kernel size 5, a ReLU layer, a 1500-to-1500 fully connected linear layer with bias, a Tanh layer, and a 1500-27 fully connected linear layer with bias.
+For the Scrabble string problem, the denoising autoencoder consisted of: a 9,000-channel 1-dimensional convolution layer with kernel size 3, a ReLU layer, a 100-channel 1-dimensional convolution layer with kernel size 5, a ReLU layer, a 1500-to-1500 fully-connected linear layer with bias, a Tanh layer, and a 1500-to-27 fully-connected linear layer with bias.
 Initial model weights were drawn from the standard normal distribution.
 To generate training data, 20,000 direct-encoded populations of 100-character strings were evolved for 40,000 generations.
 During training, inputs to the autoencoder were 15-character substrings of champion phenotypes with each character encoded as a one-hot vector.
@@ -127,8 +125,6 @@ The denoiser genotype-phenotype mapping was achieved by performing four of these
 
 For all Scrabble string experiments, tournament selection with $k = 3$ was used.
 No crossover was performed.
-(Note, though, that when the bottleneck genotype-phenotype is employed the genotype is a single float value so crossover has no effect.)
-Mutation was performed by site-wise Gaussian perturbation of the genome.
 Mutations scrambled a single, randomly-chosen character in the genotype.
 We applied a per-individual mutation rate of 0.2 and a subsequent per-site mutation rate of 0.1 while evolving training data for the denoiser.
 For all other experiments, we used a per-individual mutation rate of 0.33 and a subsequent per-site mutation rate of 0.01.
