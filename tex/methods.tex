@@ -107,8 +107,8 @@ It would be beneficial to repeat these experiments with other common operator an
 
 \subsubsection{Scrabble String Problem}
 
-\input{fig/scrabble_denoiser_examples.tex}
-\input{fig/scrabble_denoiser.tex}
+\input{fig/denoiser_scrabble_examples.tex}
+\input{fig/scrabble_denoiser_in_action.tex}
 
 For the Scrabble string problem, the denoising autoencoder consisted of: a 9,000-channel 1-dimensional convolution layer with kernel size 3, a ReLU layer, a 100-channel 1-dimensional convolution layer with kernel size 5, a ReLU layer, a 1500-to-1500 fully-connected linear layer with bias, a Tanh layer, and a 1500-to-27 fully-connected linear layer with bias.
 Initial model weights were drawn from the standard normal distribution.
@@ -118,9 +118,9 @@ With probability 0.25, the middle character of the presented substring was redra
 Over the course of two days, the network was trained for 4 epochs on a GPU-accelerated machine with the Adam optimizer and batch size 256.
 Loss was defined as mean square error of the difference between the true identity of the input substring's middle character (before any scrambling) and the predicted identity of that character.
 At the conclusion of training, the denoising autoencoder predicted the correct identity of the substring's middle character at a rate of approximately 85\% on testing data.
-Example input/output of the denoising autoencoder during training is shown in Figure \ref{fig:scrabble_denoiser_examples}.
+Example input/output of the denoising autoencoder during training is shown in Figure 3.
 For the Scrabble string problem, each site of the 100-character genotype was fed through the denoiser, yielding a new 100-character string that consisted of the denoiser's prediction at each site.
-Figure \ref{fig:scrabble_denoiser} illustrates this process.
+Figure 4 illustrates this process.
 The denoiser genotype-phenotype mapping was achieved by performing four of these denoising passes on the genotype.
 
 For all Scrabble string experiments, tournament selection with $k = 3$ was used.

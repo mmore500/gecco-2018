@@ -11,8 +11,6 @@ Relatedly, although beneficial mutational outcomes are observed frequently under
 Finally, more novelty is produced by mutation under the direct encoding compared to the denoising encoding.
 The denoiser's action filtering out certain phenotypic variation likely contributes to the reduction of novelty observed under mutation.
 
-\input{fig/select_response.tex}
-
 Subsequently, we assessed the ability of the three genotype-phenotype maps to facilitate traversal of the evolutionary search space in response to a selective pressure.
 Specifically, a selection pressure for short table height was added.
 Table height is calculated as the mean leg length of a table.
@@ -27,13 +25,15 @@ However, no further decrease in mean table height was observed over the course o
 These runs ended with a mean table height of approximately 950.
 Direct-encoded populations were trapped at local fitness peaks and unable to respond to selective pressure for short table height.
 
-Under the bottleneck mapping, a switft decrease in mean table height is observed after initialization.
+Under the bottleneck mapping, a swift decrease in mean table height is observed after initialization.
 Well within 100 generations, the populations approached to the global fitness peak of a perfectly level table with height zero.
 Populations with the bottleneck mapping were able to quickly respond to selective pressure for short table height.
 
 Under the denoising mapping, a slight drop-off in mean table height occurs after initialization, followed by a steady decrease in table height over the remainder of the evolutionary time.
 These runs ended with a mean table height of approximately 630.
 Although not as swiftly as under the bottleneck mapping, denoiser-encoded populations were still able to respond to selective pressure for short table height.
+
+\input{fig/select_response.tex}
 
 Cursory inspection of input/output of the decoding component of the bottleneck autoencoder revealed that it had learned to echo the single bottlenecked float in order to uniformly populate the vector of 100 phenotypic leg lengths.
 Thus, the bottleneck genetic representation essentially described the table height; table leg lengths were set to this height value via the genotype-phenotype map.
@@ -71,7 +71,7 @@ Figure \ref{fig:scrabble_fit_vs_gen} shows that the populations using the denois
 (Again, bootstrapped 95\% confidence are shaded along each curve.)
 Clearly, the evolvability properties of the denoiser encoding translate to evolutionary dynamics that differ strongly from the direct encoding.
 
-As shown in Figure \ref{fig:scrabble_denoiser}, the denoising autoencoder essentially learns to spell-check a genotype to generate the phenotype.
+As shown in Figures 3 and 4, the denoising autoencoder essentially learns to spell-check a genotype to generate the phenotype.
 Generally, though not always, characters contributing to valid words are left undisturbed.
 Interestingly, the change that the denoiser makes to correct a spelling error doesn't always reflect the original state of the string.
 There are often several possible repairs that will yield valid spelling outcomes.

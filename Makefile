@@ -24,8 +24,8 @@ all:  ${PDF}
 	- makeindex -s gind.ist -o $*.ind $*.idx
 	- makeindex -s gglo.ist -o $*.gls $*.glo
 	pdflatex $<
-	while ( grep -q '^LaTeX Warning: Label(s) may have changed' $*.log) \
-	do pdflatex $<; done
+	pdflatex $<
+	pdflatex $<
 
 
 acmguide.pdf: $(PACKAGE).dtx $(PACKAGE).cls
@@ -43,8 +43,8 @@ acmguide.pdf: $(PACKAGE).dtx $(PACKAGE).cls
 	- bibtex $*
 	pdflatex $<
 	pdflatex $<
-	while ( grep -q '^LaTeX Warning: Label(s) may have changed' $*.log) \
-	do pdflatex $<; done
+	pdflatex $<
+	pdflatex $<
 
 sample-sigconf.pdf \
 sample-sigconf-authordraft.pdf: samplebody-conf.tex tex/* img/* fig/*
