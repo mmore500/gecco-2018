@@ -1,6 +1,8 @@
-## CSE 848 Project Writeup
+## gecco-2018
 
-Writeup for evolutionary computing term project.
+Writeup of Autoencoder genotype-phenotype map for GECCO 2018.
+
+data, tutorials, and software @ [https://osf.io/n92c7/](https://osf.io/n92c7/)
 
 ### Authorship
 
