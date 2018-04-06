@@ -72,6 +72,7 @@ Because the Scrabble string problem is much less regular than the $n$-legged tab
 
 The evolutionary computing components of this project were implemented using the Distributed Evolutionary Algorithms for Python package, which allows for rapid prototyping and extreme flexibility \cite{fortin2012deap}.
 The artificial neural network autoencoder components of this project were implemented using PyTorch, a Python-based deep learning framework \cite{paszke2017pytorch}.
+The software used to perform and analyze our experiments, or figures, and data from our experiments is available via the Open Science framework at \url{https://osf.io/n92c7/}.
 
 \subsubsection{$n$-legged Table Problem}
 
@@ -112,7 +113,7 @@ It would be beneficial to repeat these experiments with other common operator an
 
 For the Scrabble string problem, the denoising autoencoder consisted of: a 9,000-channel 1-dimensional convolution layer with kernel size 3, a ReLU layer, a 100-channel 1-dimensional convolution layer with kernel size 5, a ReLU layer, a 1500-to-1500 fully-connected linear layer with bias, a Tanh layer, and a 1500-to-27 fully-connected linear layer with bias.
 Initial model weights were drawn from the standard normal distribution.
-To generate training data, 20,000 direct-encoded populations of 100-character strings were evolved for 40,000 generations.
+To generate training data, 20,000 direct-encoded populations of 50 100-character strings were evolved for 40,000 generations.
 During training, inputs to the autoencoder were 15-character substrings of champion phenotypes with each character encoded as a one-hot vector.
 With probability 0.25, the middle character of the presented substring was redrawn.
 Over the course of two days, the network was trained for 4 epochs on a GPU-accelerated machine with the Adam optimizer and batch size 256.
