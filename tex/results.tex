@@ -7,7 +7,7 @@
 We used evolvability signature analysis to characterize the evolvability of the $n$-legged table direct, bottleneck, and denoiser encodings (Figure \ref{fig:all_es}).
 The bottleneck mapping clearly generates more novelty per mutational step than either of the other mappings.
 Fitness does decline in tandem with novelty, but the absolute fitness scores of all mutant offspring under the bottleneck mapping are greater than the absolute fitness of the direct-evolved champions.
-Relatedly, although beneficial mutational outcomes are observed frequently under the direct encoding this is likely affected by relatively low absolute fitness of $-0.82$ ($s=0.1$) for direct-evolved champions (in comparison, for instance, to absolute fitness of $-0.025$, $s=0.004$ for denoiser-evolved champions).
+Relatedly, although beneficial mutational outcomes are observed frequently under the direct encoding, this is likely affected by relatively low absolute fitness of $-0.82$ ($s=0.1$) for direct-evolved champions (in comparison, for instance, to absolute fitness of $-0.025$, $s=0.004$ for denoiser-evolved champions).
 Finally, more novelty is produced by mutation under the direct encoding compared to the denoising encoding.
 The denoiser's action filtering out certain phenotypic variation likely contributes to the reduction of novelty observed under mutation.
 
@@ -65,7 +65,7 @@ Kernel density estimate contours of evolvability signature densities under both 
 This comparison shows that the denoiser encoding simultaneously yields more novelty and less fitness decline under mutation.
 
 Subsequently, we tested the capacity of the denoiser encoding to speed up adaptive evolution.
-We set up twenty replicate Scrabble string populations to use the the denoiser genotype-phenotype map and twenty Scrabble string populations to use the direct map.
+We set up twenty replicate Scrabble string populations to use the denoiser genotype-phenotype map and twenty Scrabble string populations to use the direct map.
 For each population, maximum fitness was recorded over 1,000 generations of evolution.
 Figure \ref{fig:scrabble_fit_vs_gen} shows that the populations using the denoiser encoding gain fitness more rapidly than the direct encoding over the first few hundred generations ($n=20$).
 (Again, bootstrapped 95\% confidence are shaded along each curve.)
