@@ -35,7 +35,7 @@ We chose this toy problem because it creates an easy-to-understand rugged fitnes
 Because unstable tables are disadvantageous, mutations to tables with uniform leg lengths tend to be deleterious.
 Thus, evolving between different table heights --- i.e., escaping local maxima --- is a tricky challenge.
 
-For evolvability signature experiments, evenness of leg lengths was the sole criterion for fitness in order to isolate the ability of a genotype-phenotype mapping to fulfill this constraint.
+For evolvability-signature experiments, evenness of leg lengths was the sole criterion for fitness in order to isolate the ability of a genotype-phenotype mapping to fulfill this constraint.
 For a phenotype $\vec{x}$, the fitness score was computed as
 \begin{align*}
 -\sigma(\vec{x})
@@ -44,7 +44,7 @@ where $\sigma$ represents calculation of standard deviation.
 Note that in all experiments, selection was performed to maximize (not minimize) fitness score.
 Under this criterion, each level table of a particular height is a local fitness peak because any single-site mutation increases the leg height variance.
 
-For response to selection experiments, the evenness of leg lengths and absolute height of a table were both factored into the fitness score.
+For response-to-selection experiments, the evenness of leg lengths and absolute height of a table were both factored into the fitness score.
 For a phenotype $\vec{x}$, the fitness score was computed as
 \begin{align*}
 -\sigma(\vec{x}) - |\mu(\vec{x})/10|
@@ -91,7 +91,7 @@ Loss was defined as mean square error of the difference between the presented ph
 Training data for both encoders used for the $n$-legged table problem consisted of 250 populations of 300 individuals evolved with the direct genotype-phenotype map.
 Initial leg lengths of each separate population were taken from a Gaussian random walk seeded uniformly between $0$ and $1000$ with $\mu = 0, \sigma = 1.0$ where each set of 100 consecutive values was taken as the initial leg lengths of a particular individual.
 This step was performed to ensure that the 250 populations were well-spread throughout the phenotype space.
-The 250 populations were evolved separately for 50 generations using the operators and settings described for the direct encoding for the evolvability signature experiments.
+The 250 populations were evolved separately for 50 generations using the operators and settings described for the direct encoding for the evolvability-signature experiments.
 The 7500 phenotypes --- vectors of 100 float values --- present in the populations after 50 generations of evolution were taken as training data.
 Leg length values were normalized to the range $(0,1)$ for the training process.
 Both encoders were easily trained on a PC (no GPU).
@@ -100,8 +100,8 @@ For all $n$-legged table experiments, population size 300 and tournament selecti
 With probability $0.5$, offspring engaged in two-point crossover with one other individual.
 (Note, though, that when the bottleneck genotype-phenotype is employed the genotype is a single float value so crossover has no effect.)
 Mutation was performed by site-wise Gaussian perturbation of the genome.
-For evolvability signature experiments, mutation of genome elements was $\mu=0, \sigma=0.1$ with a per-individual probability of $0.2$ and a subsequent per-site probability of $0.01$.
-For response to selection experiments, mutation of genome elements was $\mu=0, \sigma=0.1$ with a per-individual probability of $0.2$ and subsequent a per-site probability of $0.2$.
+For evolvability-signature experiments, mutation of genome elements was $\mu=0, \sigma=0.1$ with a per-individual probability of $0.2$ and a subsequent per-site probability of $0.01$.
+For response-to-selection experiments, mutation of genome elements was $\mu=0, \sigma=0.1$ with a per-individual probability of $0.2$ and subsequent a per-site probability of $0.2$.
 (For all experiments with the bottleneck map, a per-site probability of $1$ was employed.)
 These particular operators were used due to their easy accessibility in DEAP.
 It would be beneficial to repeat these experiments with other common operator and parameter choices to investigate the generalizability of the AutoMap approach.
