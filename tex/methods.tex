@@ -96,7 +96,7 @@ The 7500 phenotypes --- vectors of 100 float values --- present in the populatio
 Leg length values were normalized to the range $(0,1)$ for the training process.
 Both encoders were easily trained on a PC (no GPU).
 
-For all $n$-legged table experiments, tournament selection with $k = 5$ was used.
+For all $n$-legged table experiments, population size 300 and tournament selection with $k = 5$ was used.
 With probability $0.5$, offspring engaged in two-point crossover with one other individual.
 (Note, though, that when the bottleneck genotype-phenotype is employed the genotype is a single float value so crossover has no effect.)
 Mutation was performed by site-wise Gaussian perturbation of the genome.
